@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+   	
+   	<!-- 													byType Autowiring 																-->
+   	
+	<!-- 
+	 * AutoWiring for the byName methodology goes based off of the setter. For example if a bean definition is set to autowire "byName" 
+	 and it contains a 'master' property (that is, it has a setter called 'setMaster'), SPring looks for a bean definition named 'master'.
+	 It removes the 'set' part and looks for the remaining letters as a bean property name
+	 -->
+	
+	<bean id="streamingService" class="com.christien.autowiring.StreamingService" autowire="byName">
+		<property name="serviceName" value="Twitch"></property>
+	</bean>
+	
+	<!-- id must be spelled the same as how the setter is spelled -->	
+	<bean id="screenRecord" class="com.christien.autowiring.ScreenRecord" />
+
+	<!-- 													byName Autowiring 																-->
+	
+	<!-- 
+	* AutoWiring for the byType methodology goes based off of finding Beans of similar type that the property requires. However, it looks 
+	for ONE AND ONLY ONE. If more that one available type exists to be autowired and error will be thrown. If no matches exist then nothing
+	happens and the been is not set
+	-->
+	<bean id="streamingService" class="com.christien.autowiring.StreamingService" autowire="byType">
+		<property name="serviceName" value="Twitch"></property>
+	</bean>
+	
+	<!-- THe name of the Id doesnt matter however the class TYpe must be the same as the requested type in the container-->	
+	<bean id="screenRecord" class="com.christien.autowiring.ScreenRecord" />
+	
+	<!-- 													constructor Autowiring 																-->
+	
+	<!-- CONSTRUCTOR Autowiring 
+	* Is similar to byType, but applies to constructor arguments. Looks for class types of constructor arguments. Any predefined arguments within
+	the bean container must be set as  <constructor-arg> NOT <property>. If there isnt exactly one bean for each argument an error is raised
+	-->
+	<bean id="streamingService" class="com.christien.autowiring.StreamingService" autowire="constructor">
+		<constructor-arg type="String" value="Bear recurve"/>
+	</bean>
+	
+	<!-- THe name of the Id doesnt matter however the class TYpe must be the same as the requested type in the container-->	
+	<bean id="screenRecord" class="com.christien.autowiring.ScreenRecord" />
+	
+	<!-- 													autodetect Autowiring 																-->
+	
+	<!-- 
+	Autowiring by autodetect uses either of two modes i.e. constructor or byType modes. First it will try to look for valid constructor with arguments,
+	If found the autowire by constructor mode is chosen. If there is no constructor defined in bean, or explicit default no-args constructor is present, 
+	the autowire byType mode is chosen.
+	 -->
+   
+</beans> 

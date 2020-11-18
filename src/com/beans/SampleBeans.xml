@@ -1,0 +1,71 @@
+<!-- This beans file is to show how default init and destroy methods can be set when you have
+too many beans having init and destroy methods with the same name. Instead of declaring each "init-method" 
+and "destroy-method" on each individual bean you can declare the group method for all beans within 
+the <beans> tag-->
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd"
+   default-init-method = "init" 
+   default-destroy-method = "destroy">
+	
+	<!-- Aliases can be used to refer to a bean in more than one way. In the following example a bean
+	in the same container which is named "fromName", may also after the use of the alias definition, be
+	reffered to as "toName" -->
+	<alias name="fromName" alias="toName"/>
+	
+   <bean id = "..." class = "...">
+      <!-- collaborators and configuration for this bean go here -->
+   </bean>
+   
+</beans>
+
+<!-- 
+	 JavaBean is a Java object that satisfies certain programming conventions:
+		
+		1. The JavaBean class must implement either Serializable or Externalizable
+		
+		2. The JavaBean class must have a no-arg constructor
+		
+		3. All JavaBean properties must have public setter and getter methods
+		
+		4. All JavaBean instance variables should be private
+		
+		Example of JavaBeans
+		
+		@Entity
+		public class Employee implements Serializable{
+		
+		   @Id
+		   private int id;
+		   private String name;   
+		   private int salary;  
+		
+		   public Employee() {}
+		
+		   public Employee(String name, int salary) {
+		      this.name = name;
+		      this.salary = salary;
+		   }
+		   public int getId() {
+		      return id;
+		   }
+		   public void setId( int id ) {
+		      this.id = id;
+		   }
+		   public String getName() {
+		      return name;
+		   }
+		   public void setName( String name ) {
+		      this.name = name;
+		   }
+		   public int getSalary() {
+		      return salary;
+		   }
+		   public void setSalary( int salary ) {
+		      this.salary = salary;
+		   }
+		}
+
+ -->

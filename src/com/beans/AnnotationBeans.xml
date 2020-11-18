@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+	   http://www.springframework.org/schema/context
+	   http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	<!-- In order to use @Autowired the below tag and above xmlns:context statement is required -->   
+   <context:annotation-config/>
+   
+   <bean id="Hunter" class="com.christien.annotations.Hunter">
+   </bean>
+   
+   <bean id="Archer1" class="com.christien.annotations.Archer">
+   		<property name="name" value="Christien"/>
+   		<property name="memberType" value="PRIME_PLUS"/>
+   </bean>
+   
+   <bean id="bow" class="com.christien.annotations.Bow">
+		<property name="name" value="PowerMax"/>  
+		<property name="cost" value="599.99"/>
+   </bean>
+   
+   
+   <bean id="license" class="com.christien.annotations.License">
+   		<property name="level" value="HUNTER"/>
+   </bean>
+   
+   <bean id="tag" class="com.christien.annotations.Tag">
+   </bean>
+   
+
+</beans>   

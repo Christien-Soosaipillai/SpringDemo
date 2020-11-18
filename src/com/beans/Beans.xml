@@ -1,0 +1,49 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+
+	<!-- SCOPES BEANS -->
+	<!-- Singleton bean -->
+	<bean id="helloWorldSingleton" class="com.tutorialspoint.scopes.HelloWorld" scope="singleton">
+		<property name="message" value="Hello World from Singleton scope!" />
+	</bean>
+
+	<!-- Prototype bean -->
+	<bean id="helloWorldPrototype" class="com.tutorialspoint.scopes.HelloWorld" scope="prototype">
+		<property name="message" value="Hello World from Prototype scope!" />
+	</bean>
+	
+	
+	<!-- LIFECYCLE BEANS -->
+	<!-- The init-method and destroy method are only made available to  -->
+	<bean id="rose" class="com.tutorialspoint.lifecycle.Plant" scope="singleton" init-method="initPlant" destroy-method="destroyPlant">
+		<property name="name" value="Rose" />
+	</bean>
+	
+	<!-- Spring does not manage the complete lifecycle of a prototype bean; the container instantiates 
+	it(therefore running the init-method) and assembles it, then hands it to the client. With no further 
+	record of what happens to it    -->
+	<bean id="daisy" class="com.tutorialspoint.lifecycle.Plant" scope="prototype" init-method="initPlant">
+		<property name="name" value="Daisy" />
+	</bean>
+	
+	<bean id="watersource" class="com.tutorialspoint.lifecycle.WaterSource" scope="prototype">
+		<property name="type" value="Stream Water" />
+	</bean>
+	
+	
+	<bean id="roseGarden" class="com.tutorialspoint.lifecycle.Garden" scope="singleton">
+		<constructor-arg ref="rose"/>
+		<constructor-arg ref="watersource"/>
+	</bean>
+
+	<bean id="exampleBean" class="com.tutorialspoint.lifecycle.ExampleBean">
+		<constructor-arg type="int" value="7500000" />
+		<constructor-arg type="java.lang.String" value="42" />
+	</bean>
+
+</beans>

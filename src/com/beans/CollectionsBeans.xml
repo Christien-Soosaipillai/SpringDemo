@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<bean id="ArcheryShop" class="com.christien.collections.ArcheryShop">
+		<property name="membersInfo">
+			<map>
+				<entry key="Christien" value-ref="Christien"/>
+				<entry key="Bill" value-ref="Bill"/>
+				<entry key="Dudley" value-ref="Dudley"/>
+			</map>
+		</property>
+		
+		<property name="bowsForSale">
+			<list>
+				<ref bean="bow-1"/>
+				<ref bean="bow-2"/>
+			</list>
+		</property>
+		
+		<!-- Session Types -->
+		<property name="sessionTypes">
+			<set>
+				<value>Beginner</value>
+				<value>Intermediate</value>
+				<value>PKG Program</value>
+				<value>Recreational Archery and Airgun Training and Shooting</value>
+			</set>
+		</property>
+		
+	</bean>	
+	
+	<!-- Members Info -->
+	<bean id="Christien" class="com.christien.collections.Archer">
+		<constructor-arg type="String" value="Christien"/>
+		<constructor-arg type="String" value="Hoyt PowerMax"/>
+		<constructor-arg type="com.christien.collections.MemberType" value="PRIME"></constructor-arg>
+	</bean>	
+	
+	<bean id="Bill" class="com.christien.collections.Archer">
+		<constructor-arg type="String" value="Bill"/>
+		<constructor-arg type="String" value="Bear recurve"/>
+		<constructor-arg type="com.christien.collections.MemberType" value="REGULAR"></constructor-arg>
+	</bean>	
+	
+	<bean id="Dudley" class="com.christien.collections.Archer">
+		<constructor-arg type="String" value="Dudly"/>
+		<constructor-arg type="String" value="Matthews Compound"/>
+		<constructor-arg type="com.christien.collections.MemberType" value="PRIME_PLUS"></constructor-arg>
+	</bean>	
+	
+	
+	<!-- Bows Information -->
+	<bean id="bow-1" class="com.christien.collections.Bow">
+		<constructor-arg type="String" value="Carbon RX-4"/>
+		<constructor-arg type="double" value="1699.00"/>
+	</bean>	
+	
+	<bean id="bow-2" class="com.christien.collections.Bow">
+		<constructor-arg type="String" value="Torred"/>
+		<constructor-arg type="double" value="599.00"/>
+	</bean>	
+	
+	
+	
+</beans>

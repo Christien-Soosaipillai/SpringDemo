@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+	<!-- Constructor based Dependency Injection -->
+	<bean id="CarTester" class="com.christien.dependencyinjection.constructorbase.CarTester" >
+		<constructor-arg ref="emissionTester" />
+	</bean>
+	
+	<bean id="emissionTester" class="com.christien.dependencyinjection.constructorbase.EmissionTester"/>
+   	
+   	<bean id="DualBlader" class="com.christien.dependencyinjection.constructorbase.DualBlader">
+   		<constructor-arg ref="dagger"/>
+   		<constructor-arg ref="katara"/>
+   	</bean>
+   	
+   	<!-- Type Matching for constructor arguments, make sure you have constructor first with args -->
+   	<bean id="dagger" class="com.christien.dependencyinjection.constructorbase.Dagger">
+   		<constructor-arg type="int" value="18"/>
+   		<constructor-arg type="int" value="19"/>
+   	</bean>
+   	
+   	<!-- Using the index attribute to pass constructor args, make sure you have constructor with correct fields -->
+   	<bean id="katara" class="com.christien.dependencyinjection.constructorbase.Katara">
+   		<constructor-arg index="0" value="11"/>
+   		<constructor-arg index="1" value="18"/>
+   		<constructor-arg index="2" value="18"/>
+   	</bean>
+   	<!-- END OF CONSTRUCTOR BASED DEPENDENCY INJECTION -->
+   	
+   	
+   	<!-- Constructor based Dependency Injection -->
+   	<bean id="Meal" class="com.christien.dependencyinjection.setterbased.Meal">
+   		<property name="food" ref="food"/>
+   		<property name="drink" ref="drink"/>
+   	</bean>
+   	
+	<bean id="food" class="com.christien.dependencyinjection.setterbased.Food">
+		<property name="name" value="CheeseBurger"></property>
+		<property name="price" value="2.19"></property>
+	</bean>
+	
+	<bean id="drink" class="com.christien.dependencyinjection.setterbased.Drink">
+		<property name="name" value="Pepsi"></property>
+		<property name="price" value="1.25"></property>
+	</bean>
+   
+</beans> 
