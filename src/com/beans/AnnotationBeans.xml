@@ -23,6 +23,11 @@
 		<property name="cost" value="599.99"/>
    </bean>
    
+   <bean id="bow2" class="com.christien.annotations.Bow">
+		<property name="name" value="Bear"/>  
+		<property name="cost" value="399.99"/>
+   </bean>
+   
    
    <bean id="license" class="com.christien.annotations.License">
    		<property name="level" value="HUNTER"/>
